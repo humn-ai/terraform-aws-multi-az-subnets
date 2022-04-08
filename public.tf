@@ -90,7 +90,7 @@ resource "aws_route" "public" {
   depends_on             = [aws_route_table.public]
 }
 
-resource "aws_route" "tgw" {
+resource "aws_route" "public_tgw" {
   for_each = {
     for key, value in local.public_azs :
     key => value

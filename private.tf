@@ -100,7 +100,7 @@ resource "aws_route" "default" {
   depends_on             = [aws_route_table.private]
 }
 
-resource "aws_route" "tgw" {
+resource "aws_route" "private_tgw" {
   for_each = {
     for key, value in local.private_azs :
     key => value
