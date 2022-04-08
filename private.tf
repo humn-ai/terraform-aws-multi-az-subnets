@@ -7,7 +7,8 @@ module "private_label" {
   source  = "cloudposse/label/null"
   version = "0.24.1"
 
-  attributes = ["private"]
+  # Attributes will be provided from input
+  # attributes = ["private"]
 
   context = module.this.context
 }

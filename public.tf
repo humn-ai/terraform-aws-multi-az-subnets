@@ -8,7 +8,8 @@ module "public_label" {
   source  = "cloudposse/label/null"
   version = "0.24.1"
 
-  attributes = ["public"]
+  # Attributes will be provided from input
+  # attributes = ["public"]
 
   context = module.this.context
 }
