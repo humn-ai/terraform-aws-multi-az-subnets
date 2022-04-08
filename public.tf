@@ -90,6 +90,19 @@ resource "aws_route" "public" {
   depends_on             = [aws_route_table.public]
 }
 
+resource "aws_route" "tgw" {
+  for_each = {
+    for key, value in local.public_azs :
+    key => value
+    if lookup(var, "tgw_id", null) != null
+  }
+
+  route_table_id         = aws_route_table.public[each.key].id
+  gateway_id             = var.igw_id
+  destination_cidr_block = "0.0.0.0/0"
+  depends_on             = [aws_route_table.public]
+}
+
 resource "aws_route_table_association" "public" {
   for_each = local.public_azs
 
