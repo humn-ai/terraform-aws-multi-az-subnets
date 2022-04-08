@@ -94,7 +94,7 @@ resource "aws_route" "tgw" {
   for_each = {
     for key, value in local.public_azs :
     key => value
-    if lookup(var, "tgw_id", null) != null
+    if var.tgw_id != null
   }
 
   route_table_id         = aws_route_table.public[each.key].id
