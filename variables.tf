@@ -121,3 +121,7 @@ variable "nat_gateway_enabled" {
   default     = "true"
 }
 
+variable "desired_newbits" {
+  description = "Force the subnets created with this newbits"
+  type        = number
+}

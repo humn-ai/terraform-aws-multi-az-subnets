@@ -1,5 +1,6 @@
 locals {
-  private_azs = local.private_enabled ? { for idx, az in var.availability_zones : az => idx } : {}
+  private_azs     = local.private_enabled ? { for idx, az in var.availability_zones : az => idx } : {}
+  private_newbits = var.desired_newbits ? ceil(log(var.max_subnets, 2)) : var.desired_newbits
 }
 
 module "private_label" {
@@ -16,7 +17,7 @@ resource "aws_subnet" "private" {
 
   vpc_id            = var.vpc_id
   availability_zone = each.key
-  cidr_block        = cidrsubnet(var.cidr_block, ceil(log(var.max_subnets, 2)), each.value)
+  cidr_block        = cidrsubnet(var.cidr_block, local.private_newbits, each.value)
 
   tags = merge(
     module.private_label.tags,
