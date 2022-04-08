@@ -135,6 +135,12 @@ variable "starting_netsum" {
 
 variable "tgw_id" {
   type        = string
-  description = "Transit Gateway ID that is used as a default route when creating subnets (e.g. `tgw-9c26a123`)"
+  description = "Transit Gateway ID that is used as a default route when creating subnets (e.g. `tgw-9c26a123`), this route will create only tgw_id provided"
   default     = null
+}
+
+variable "tgw_route_cidr" {
+  type        = string
+  description = "Destination CIDR for Transit Gateway route when creating subnets"
+  default     = "10.0.0.0/8"
 }

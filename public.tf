@@ -98,8 +98,8 @@ resource "aws_route" "tgw" {
   }
 
   route_table_id         = aws_route_table.public[each.key].id
-  gateway_id             = var.igw_id
-  destination_cidr_block = "0.0.0.0/0"
+  transit_gateway_id     = var.tgw_id
+  destination_cidr_block = "10.0.0.0/8"
   depends_on             = [aws_route_table.public]
 }
 
