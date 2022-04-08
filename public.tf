@@ -18,7 +18,7 @@ resource "aws_subnet" "public" {
 
   vpc_id            = var.vpc_id
   availability_zone = each.key
-  cidr_block        = cidrsubnet(var.cidr_block, local.public_newbits, each.value)
+  cidr_block        = cidrsubnet(var.cidr_block, local.public_newbits, var.starting_netsum + each.value)
 
   tags = merge(
     module.public_label.tags,

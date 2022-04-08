@@ -126,3 +126,9 @@ variable "desired_newbits" {
   type        = number
   default     = 0
 }
+
+variable "starting_netsum" {
+  description = "Add the netsum to generated cidrsubnet"
+  type        = number
+  default     = 0
+}
