@@ -132,3 +132,9 @@ variable "starting_netsum" {
   type        = number
   default     = 0
 }
+
+variable "tgw_id" {
+  type        = string
+  description = "Transit Gateway ID that is used as a default route when creating subnets (e.g. `tgw-9c26a123`)"
+  default     = null
+}
