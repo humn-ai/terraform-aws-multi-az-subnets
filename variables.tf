@@ -133,9 +133,15 @@ variable "starting_netsum" {
   default     = 0
 }
 
+variable "tgw_route_enabled" {
+  type        = bool
+  description = "Create Transit Gateway route when creating subnets"
+  default     = false
+}
+
 variable "tgw_id" {
   type        = string
-  description = "Transit Gateway ID that is used as a default route when creating subnets (e.g. `tgw-9c26a123`), this route will create only tgw_id provided"
+  description = "Transit Gateway ID that is used as a default route when creating subnets (e.g. `tgw-9c26a123`)"
   default     = null
 }
 
