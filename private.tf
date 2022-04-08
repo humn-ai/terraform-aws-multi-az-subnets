@@ -1,6 +1,6 @@
 locals {
   private_azs     = local.private_enabled ? { for idx, az in var.availability_zones : az => idx } : {}
-  private_newbits = var.desired_newbits ? ceil(log(var.max_subnets, 2)) : var.desired_newbits
+  private_newbits = var.desired_newbits == 0 ? ceil(log(var.max_subnets, 2)) : var.desired_newbits
 }
 
 module "private_label" {

@@ -1,7 +1,7 @@
 locals {
   public_azs             = local.public_enabled ? { for idx, az in var.availability_zones : az => idx } : {}
   public_nat_gateway_azs = local.public_enabled && var.nat_gateway_enabled ? local.public_azs : {}
-  public_newbits         = var.desired_newbits ? ceil(log(var.max_subnets, 2)) : var.desired_newbits
+  public_newbits         = var.desired_newbits == 0 ? ceil(log(var.max_subnets, 2)) : var.desired_newbits
 }
 
 module "public_label" {
