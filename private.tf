@@ -74,7 +74,7 @@ resource "aws_route_table" "private" {
   tags = merge(
     module.private_label.tags,
     {
-      "Name" = "${module.private_label.id}${module.this.delimiter}${each.key}"
+      "Name" = "${module.private_label.id}${module.this.delimiter}${split("-", each.key)[0]}${substr(split("-", each.key)[1], 0, 1)}${split("-", each.key)[2]}"
       "Type" = var.type
     },
   )
