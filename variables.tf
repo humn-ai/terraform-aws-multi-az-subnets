@@ -133,6 +133,12 @@ variable "starting_netsum" {
   default     = 0
 }
 
+variable "route_table_attribute" {
+  type        = string
+  description = "Extra attribute to build route table name"
+  default     = null
+}
+
 variable "tgw_route_enabled" {
   type        = bool
   description = "Create Transit Gateway route when creating subnets"

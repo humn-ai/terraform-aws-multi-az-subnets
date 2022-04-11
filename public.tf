@@ -24,7 +24,7 @@ resource "aws_subnet" "public" {
   tags = merge(
     module.public_label.tags,
     {
-      "Name" = "${module.public_label.id}${module.this.delimiter}${each.key}"
+      "Name" = "${module.public_label.id}${module.this.delimiter}${split("-", each.key)[0]}${substr(split("-", each.key)[1], 0, 1)}${split("-", each.key)[2]}"
       "Type" = var.type
     },
   )
@@ -75,7 +75,7 @@ resource "aws_route_table" "public" {
   tags = merge(
     module.public_label.tags,
     {
-      "Name" = "${module.public_label.id}${module.this.delimiter}${split("-", each.key)[0]}${substr(split("-", each.key)[1], 0, 1)}${split("-", each.key)[2]}"
+      "Name" = "${var.namespace}${module.this.delimiter}${var.environment}${module.this.delimiter}${var.route_table_attribute}${module.this.delimiter}rt${module.this.delimiter}${split("-", each.key)[0]}${substr(split("-", each.key)[1], 0, 1)}${split("-", each.key)[2]}"
       "Type" = var.type
     },
   )
@@ -138,7 +138,7 @@ resource "aws_nat_gateway" "public" {
   tags = merge(
     module.public_label.tags,
     {
-      "Name" = "${module.public_label.id}${module.this.delimiter}${each.key}"
+      "Name" = "${module.public_label.id}${module.this.delimiter}natgw${module.this.delimiter}${split("-", each.key)[0]}${substr(split("-", each.key)[1], 0, 1)}${split("-", each.key)[2]}"
       "Type" = var.type
     },
   )
