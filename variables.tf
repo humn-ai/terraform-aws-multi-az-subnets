@@ -138,21 +138,3 @@ variable "route_table_attribute" {
   description = "Extra attribute to build route table name"
   default     = null
 }
-
-variable "tgw_route_enabled" {
-  type        = bool
-  description = "Create Transit Gateway route when creating subnets"
-  default     = false
-}
-
-variable "tgw_id" {
-  type        = string
-  description = "Transit Gateway ID that is used as a default route when creating subnets (e.g. `tgw-9c26a123`)"
-  default     = null
-}
-
-variable "tgw_route_cidr" {
-  type        = string
-  description = "Destination CIDR for Transit Gateway route when creating subnets"
-  default     = "10.0.0.0/8"
-}

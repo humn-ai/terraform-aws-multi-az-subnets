@@ -99,16 +99,3 @@ resource "aws_route" "default" {
   destination_cidr_block = "0.0.0.0/0"
   depends_on             = [aws_route_table.private]
 }
-
-resource "aws_route" "private_tgw" {
-  for_each = {
-    for key, value in local.private_azs :
-    key => value
-    if var.tgw_route_enabled
-  }
-
-  route_table_id         = aws_route_table.private[each.key].id
-  transit_gateway_id     = var.tgw_id
-  destination_cidr_block = var.tgw_route_cidr
-  depends_on             = [aws_route_table.private]
-}
