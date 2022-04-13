@@ -90,19 +90,6 @@ resource "aws_route" "public" {
   depends_on             = [aws_route_table.public]
 }
 
-resource "aws_route" "public_tgw" {
-  for_each = {
-    for key, value in local.public_azs :
-    key => value
-    if var.tgw_route_enabled
-  }
-
-  route_table_id         = aws_route_table.public[each.key].id
-  transit_gateway_id     = var.tgw_id
-  destination_cidr_block = var.tgw_route_cidr
-  depends_on             = [aws_route_table.public]
-}
-
 resource "aws_route_table_association" "public" {
   for_each = local.public_azs
 
